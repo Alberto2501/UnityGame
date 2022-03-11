@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPause.unity
     guid: 586bcd521ed1ad4479172c06151b5969
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Level1.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 7bd37f7554ef36744b2b7bb0592b540e, type: 2}
