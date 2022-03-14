@@ -5,14 +5,14 @@ using UnityEngine;
 public class MovimientoJugador : MonoBehaviour
 {
     //Declaracion de variables
-    [Range(1, 10)] public float velocidad;
+    [Range(1, 20)] public float velocidad;
     Rigidbody2D rb2d;
     SpriteRenderer spRd;
 
     private Animator animator;
-
-    bool isJumping = false;
-    [Range(1, 500)] public float potenciaSalto;
+    private bool IsWalking;
+    private bool isJumping;
+    [Range(1, 1000)] public float potenciaSalto;
     //Variable para puntuacion para powerUp
     public int puntuacion;
 
@@ -53,10 +53,12 @@ public class MovimientoJugador : MonoBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
+
         if(Input.GetButton("Jump") && !isJumping)
         {
             rb2d.AddForce(Vector2.up * potenciaSalto);
             isJumping = true;
+            animator.SetBool("isJumping", true);
         }
        
 
@@ -66,6 +68,7 @@ public class MovimientoJugador : MonoBehaviour
         if (collision.gameObject.CompareTag("Suelo"))
         {
             isJumping=false;
+            animator.SetBool("isJumping", false);
             rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         }
     }

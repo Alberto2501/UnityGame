@@ -12,17 +12,12 @@ public class ControlMenu : MonoBehaviour
         //gameManager = FindObjectOfType<GameManager>();
         //gameManager.inicializarVidas();
 
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void OnButtonAjustes()
     {
         SceneManager.LoadScene("MenuAjustes");
-    }
-
-    public void OnButtonPause()
-    {
-        SceneManager.LoadScene("MenuPause");
     }
 
     public void OnButtonSalir()
