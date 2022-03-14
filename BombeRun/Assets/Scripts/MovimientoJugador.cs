@@ -12,7 +12,7 @@ public class MovimientoJugador : MonoBehaviour
     private Animator animator;
     private bool IsWalking;
     private bool isJumping;
-    [Range(1, 1000)] public float potenciaSalto;
+    [Range(1, 1500)] public float potenciaSalto;
     //Variable para puntuacion para powerUp
     public int puntuacion;
 
