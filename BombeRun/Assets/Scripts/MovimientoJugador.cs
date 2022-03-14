@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MovimientoJugador : MonoBehaviour
 {
@@ -9,10 +10,16 @@ public class MovimientoJugador : MonoBehaviour
     Rigidbody2D rb2d;
     SpriteRenderer spRd;
 
+    public Joystick joystick;
+
+    public Canvas canvas;
+    private ControlHUD hud;
+
+    private GameManager gameManager;
     private Animator animator;
     private bool IsWalking;
     private bool isJumping;
-    [Range(1, 1000)] public float potenciaSalto;
+    [Range(1, 1500)] public float potenciaSalto;
     //Variable para puntuacion para powerUp
     public int puntuacion;
 
@@ -22,6 +29,15 @@ public class MovimientoJugador : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         spRd = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+
+        //Control de vidas con GameManager
+        gameManager = FindObjectOfType<GameManager>();
+
+        //Control canvas
+        hud = canvas.GetComponent<ControlHUD>();
+
+        //Vidas
+        hud.setVidasTxt(gameManager.getVidas());
     }
 
     // Update is called once per frame
@@ -31,12 +47,24 @@ public class MovimientoJugador : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float movimientoH = Input.GetAxisRaw("Horizontal");
+        //float movimientoH = Input.GetAxisRaw("Horizontal");
+        float movimientoH;
+
+        if ((joystick.Horizontal >= .2f) | (joystick.Horizontal <= -.2f))
+        {
+            movimientoH = joystick.Horizontal;
+        }
+        else
+        {
+            movimientoH = 0f;
+        }
+
         rb2d.velocity = new Vector2(movimientoH * velocidad, rb2d.velocity.y);
         if (movimientoH > 0)
         {
             spRd.flipX = false;
-        }else
+        }
+        else
         {
             if (movimientoH < 0)
             {
@@ -54,11 +82,12 @@ public class MovimientoJugador : MonoBehaviour
             animator.SetBool("IsWalking", false);
         }
 
-        if(Input.GetButton("Jump") && !isJumping)
+        float movimientoV = joystick.Vertical;
+
+        if (movimientoV >= .5f && !isJumping)
         {
             rb2d.AddForce(Vector2.up * potenciaSalto);
             isJumping = true;
-            animator.SetBool("isJumping", true);
         }
        
 
@@ -71,9 +100,36 @@ public class MovimientoJugador : MonoBehaviour
             animator.SetBool("isJumping", false);
             rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
         }
+        
     }
     public void IncrementarPuntos(int cantidad)
     {
         puntuacion += cantidad;
+    }
+    public void QuitarVida()
+    {
+        
+        gameManager.decrementarVidas();
+        hud.setVidasTxt(gameManager.getVidas());
+        if (gameManager.getVidas() == 0)
+        {
+            //Fin juego
+            gameManager.inicializarVidas();
+            SceneManager.LoadScene("MenuInicio");
+        }
+        else {
+            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+            
+
+    }
+    public void accionBoton()
+    {
+        if (!isJumping)
+        {
+            rb2d.AddForce(Vector2.up * potenciaSalto);
+            isJumping = true;
+        }
     }
 }
