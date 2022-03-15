@@ -5,11 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class ControlMenu : MonoBehaviour
 {
-    //GameManager gameManager;
+    GameManager gameManager;
+    public void Start() {
+        gameManager = FindObjectOfType<GameManager>();
+    }
+    
     public void OnButtonJugar()
     {
         //Vuelve a poner el número de vidas en 3
-        //gameManager = FindObjectOfType<GameManager>();
+        gameManager = FindObjectOfType<GameManager>();
         //gameManager.inicializarVidas();
 
         SceneManager.LoadScene("Level1");
@@ -28,5 +32,8 @@ public class ControlMenu : MonoBehaviour
     public void OnButtonMenu()
     {
         SceneManager.LoadScene("MenuInicio");
+    }
+    public void OnButtonDummies() {
+        gameManager.changeGodMode(true);
     }
 }

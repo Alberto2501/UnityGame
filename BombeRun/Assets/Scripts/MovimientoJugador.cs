@@ -88,9 +88,9 @@ public class MovimientoJugador : MonoBehaviour
 
         if (movimientoV >= .5f && !isJumping)
         {
-            rb2d.AddForce(Vector2.up * potenciaSalto);
-            isJumping = true;
-            animator.SetBool("isJumping", true);
+            //rb2d.AddForce(Vector2.up * potenciaSalto);
+            //isJumping = true;
+            //animator.SetBool("isJumping", true);
         }
        
 
@@ -115,7 +115,7 @@ public class MovimientoJugador : MonoBehaviour
         
         gameManager.decrementarVidas();
         hud.setVidasTxt(gameManager.getVidas());
-        if (gameManager.getVidas() == 0)
+        if (gameManager.getVidas() == 0 && !gameManager.godMode)
         {
             //Fin juego
             gameManager.inicializarVidas();

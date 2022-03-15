@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public int vidasGlobal = 3;
     public int puntosGlobal = 0;
     public int puntosAcumulados = 0;
+    public bool godMode = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,15 @@ public class GameManager : MonoBehaviour
     }
     public void inicializarVidas()
     {
-        vidasGlobal=3;
+
+        if (godMode == true)
+        {
+            vidasGlobal = 99;
+        }
+        else {
+            vidasGlobal = 3;
+        }
+        
     }
     public int getPuntos()
     {
@@ -56,5 +65,8 @@ public class GameManager : MonoBehaviour
     public void terminarJuego(bool ganar)
     {
         cambiarEscena("Final");
+    }
+    public void changeGodMode(bool bol) {
+        godMode = bol;
     }
 }
