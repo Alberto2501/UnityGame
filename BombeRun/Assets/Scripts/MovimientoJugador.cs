@@ -32,12 +32,14 @@ public class MovimientoJugador : MonoBehaviour
 
         //Control de vidas con GameManager
         gameManager = FindObjectOfType<GameManager>();
-
+        
         //Control canvas
         hud = canvas.GetComponent<ControlHUD>();
 
         //Vidas
+        
         hud.setVidasTxt(gameManager.getVidas());
+        hud.setPowerUpsTxt(gameManager.getPuntos());
     }
 
     // Update is called once per frame
@@ -104,7 +106,8 @@ public class MovimientoJugador : MonoBehaviour
     }
     public void IncrementarPuntos(int cantidad)
     {
-        puntuacion += cantidad;
+        gameManager.incrementarPuntos(cantidad);
+        hud.setPowerUpsTxt(gameManager.getPuntos());
     }
     public void QuitarVida()
     {
@@ -115,7 +118,9 @@ public class MovimientoJugador : MonoBehaviour
         {
             //Fin juego
             gameManager.inicializarVidas();
-            SceneManager.LoadScene("MenuInicio");
+            perderTodosLosPuntos();
+            reiniciarPuntos();
+            SceneManager.LoadScene("FinalDerrota");
         }
         else {
             
@@ -131,5 +136,17 @@ public class MovimientoJugador : MonoBehaviour
             rb2d.AddForce(Vector2.up * potenciaSalto);
             isJumping = true;
         }
+    }
+    public void reiniciarPuntos() {
+        gameManager.inicializarPuntos();
+    }
+    public void perderTodosLosPuntos() {
+        gameManager.PerderPuntos();
+    }
+    public void acumularPuntos() {
+        gameManager.acumularPuntos();
+    }
+    public void inicializarVidas() {
+        gameManager.inicializarVidas();
     }
 }

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Preload.unity
     guid: 8f87f69093b60e148bce990acbdabce7
   - enabled: 1
+    path: Assets/Scenes/PrimeraPantalla.unity
+    guid: 43a6ac57a86855348a4e2fde976d2a98
+  - enabled: 1
     path: Assets/Scenes/MenuInicio.unity
     guid: 42cb09a5fb872bc4eacf9f2b5251f005
   - enabled: 1
@@ -18,10 +21,16 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuPause.unity
     guid: 586bcd521ed1ad4479172c06151b5969
   - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+  - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: b9ba04d0cbbbe004ea1317805525b869
   - enabled: 1
-    path: Assets/Scenes/Level1.unity
-    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+    path: Assets/Scenes/FinalDerrota.unity
+    guid: 92aac8dcb1847d74abac63c90e6067ad
+  - enabled: 1
+    path: Assets/Scenes/FinalVictoria.unity
+    guid: 7811adb573fd45647ad24d1f8504f302
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 7bd37f7554ef36744b2b7bb0592b540e, type: 2}

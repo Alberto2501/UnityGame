@@ -6,16 +6,16 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private GameObject gameManager;
-    public int vidasGlobal;
-
-    public string mensajeFinal;
+    public int vidasGlobal = 3;
+    public int puntosGlobal = 0;
+    public int puntosAcumulados = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
         DontDestroyOnLoad(gameManager);
-        SceneManager.LoadScene("MenuInicio");
+        SceneManager.LoadScene("PrimeraPantalla");
     }
 
     public void cambiarEscena(string siguienteScene)
@@ -30,17 +30,31 @@ public class GameManager : MonoBehaviour
     {
         vidasGlobal--;
     }
+    public void PerderPuntos() {
+        puntosAcumulados = 0;
+        puntosGlobal = 0;
+    }
     public void inicializarVidas()
     {
         vidasGlobal=3;
     }
+    public int getPuntos()
+    {
+        return this.puntosGlobal;
+    }
+    public void incrementarPuntos(int num)
+    {
+        puntosGlobal = puntosGlobal + num;
+    }
+    public void inicializarPuntos()
+    {
+        puntosGlobal = puntosAcumulados;
+    }
+    public void acumularPuntos() {
+        puntosAcumulados = puntosGlobal;
+    }
     public void terminarJuego(bool ganar)
     {
-        mensajeFinal = (ganar) ? "Felicidades has terminado el juego" : "Uuuuuuuhhh has perdido";
         cambiarEscena("Final");
-    }
-    public string getMensajeFinal()
-    {
-        return this.mensajeFinal;
     }
 }

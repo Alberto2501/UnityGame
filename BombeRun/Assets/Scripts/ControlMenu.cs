@@ -12,7 +12,7 @@ public class ControlMenu : MonoBehaviour
         //gameManager = FindObjectOfType<GameManager>();
         //gameManager.inicializarVidas();
 
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene("Level1");
     }
 
     public void OnButtonAjustes()

@@ -9,6 +9,7 @@ public class MuerteCaida : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            collision.gameObject.GetComponent<MovimientoJugador>().reiniciarPuntos();
             collision.gameObject.GetComponent<MovimientoJugador>().QuitarVida();
         }
     }
