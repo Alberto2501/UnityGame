@@ -90,6 +90,7 @@ public class MovimientoJugador : MonoBehaviour
         {
             rb2d.AddForce(Vector2.up * potenciaSalto);
             isJumping = true;
+            animator.SetBool("isJumping", true);
         }
        
 
@@ -135,6 +136,7 @@ public class MovimientoJugador : MonoBehaviour
         {
             rb2d.AddForce(Vector2.up * potenciaSalto);
             isJumping = true;
+            animator.SetBool("isJumping", true);
         }
     }
     public void reiniciarPuntos() {
